@@ -4,15 +4,17 @@
 .todo {
    display: grid;
    grid-template-columns: var(--grid-container);
-   margin: 3rem 0 3rem 0;
+   margin: 3rem 0 2rem 0;
    
    &__inner {
       grid-column: inner;
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
    }
+
+   // ADD TODO
 
    &__form {
       max-width: 800px;
@@ -55,17 +57,32 @@
       cursor: pointer;
    }
 
+   // TODO LIST
+   
+   &__content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 800px;
+      width: 100%;
+      margin-top: 3rem
+   }
+   
+   &__title {
+      margin: 0;
+      padding: 0;
+      color: var(--color-black);
+      font-size: var(--font-size-4);
+   }
+
+   &__reset-button {
+      @include button.standard()
+   }
+
    &__error-message-container {
       h5 {
          color: var(--color-black);
       }
-   }
-   
-   &__title {
-      margin: 3rem 0 1rem 0;
-      padding: 0;
-      color: var(--color-black);
-      font-size: var(--font-size-4);
    }
 
    &__list {
@@ -112,25 +129,13 @@
       
    }
 
+   &__input-container {
+      flex: 1;
+   }
+
    &__item--completed {
       color: var(--color-light-grey); 
       text-decoration: line-through;
-   }
-
-   &__reset-button-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-      padding: 2rem 0 0 0;
-   }
-   
-   &__reset-button {
-      @include button.standard()
-   }
-
-   &__input-container {
-      flex: 1;
    }
 
 }
