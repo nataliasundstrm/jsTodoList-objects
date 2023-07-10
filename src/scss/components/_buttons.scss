@@ -1,0 +1,28 @@
+@mixin standard(
+    $border-radius: 0.25rem, 
+    $background-color: var(--color-light-grey),
+    $background-color-2: var(--color-dark-grey),
+    $color: var(--color-black), 
+    $color-2: var(--color-white), 
+    $width: 78px,
+    $height: 50px, 
+    $font-size: var(--font-size-1),
+    $border: none,
+
+){
+    border-radius: $border-radius;
+    background-color: $background-color;
+    color: $color; 
+    height: $height; 
+    width: $width; 
+    font-size: $font-size;
+    border: $border;
+
+    &:hover {
+        background-color: $background-color-2;
+        color: $color-2;
+        cursor: pointer;
+    }
+}
+
+

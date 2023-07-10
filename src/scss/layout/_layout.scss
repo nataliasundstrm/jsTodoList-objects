@@ -1,0 +1,136 @@
+@use '../components/buttons' as button; 
+
+
+.todo {
+   display: grid;
+   grid-template-columns: var(--grid-container);
+   margin: 3rem 0 3rem 0;
+   
+   &__inner {
+      grid-column: inner;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+   }
+
+   &__form {
+      max-width: 800px;
+      width: 100%;
+      border: 1px solid var(--color-light-grey);
+      border-radius: 0.5rem;
+      padding: 1rem;
+   }
+   
+   &__input,
+   &__add-button {
+      padding: 1rem;
+      width: 100%;
+      border: 0;
+      border-radius: 0.5rem;
+      font-size: var(--font-size-1);
+   }
+   
+   &__input {
+      background-color: var(--color-pink);
+   }
+   
+   &__input::placeholder {
+      color: var(--color-black);
+   }
+   
+   &__input:focus {
+      outline: none;
+   }
+   
+   &__add-button {
+      margin-top: 0.5rem;
+      background-color: var(--color-light-grey);
+      color: var(--color-black);
+   }
+
+   &__add-button:hover {
+      background-color: var(--color-dark-grey);
+      color: var(--color-white);
+      cursor: pointer;
+   }
+
+   &__error-message-container {
+      h5 {
+         color: var(--color-black);
+      }
+   }
+   
+   &__title {
+      margin: 3rem 0 1rem 0;
+      padding: 0;
+      color: var(--color-black);
+      font-size: var(--font-size-4);
+   }
+
+   &__list {
+      max-width: 800px;
+      width: 100%;
+   }
+
+   &__container {
+      margin: 1rem 0 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid var(--color-light-grey);
+      border-radius: 0.5rem;
+      padding: 1rem;
+
+      input[type=checkbox] {
+         margin: 0;
+      }
+      
+      input[type=checkbox]:hover {
+         cursor: pointer;
+      }
+      
+      input[type=text] {
+         margin: 0;
+         padding: 1rem 1rem 1rem 0.5rem;
+         border: none;
+         font-size: var(--font-size-1);
+         width: 90%;
+      }
+
+      input[type=text]:focus {
+         outline: none;
+      }
+
+      button {
+         @include button.standard()   
+      }
+
+      button:last-child {
+         margin-left: 0.5rem;
+      }
+      
+   }
+
+   &__item--completed {
+      color: var(--color-light-grey); 
+      text-decoration: line-through;
+   }
+
+   &__reset-button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 2rem 0 0 0;
+   }
+   
+   &__reset-button {
+      @include button.standard()
+   }
+
+   &__input-container {
+      flex: 1;
+   }
+
+}

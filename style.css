@@ -1,0 +1,213 @@
+:root {
+  --font-sans: sans-serif;
+  --font-serif: serif;
+  --font-base: 1rem;
+  --font-scale: 1.25;
+  --font-size-1: var(--font-base);
+  --font-size-2: calc( var(--font-size-1) * var(--font-scale) );
+  --font-size-3: calc( var(--font-size-2) * var(--font-scale) );
+  --font-size-4: calc( var(--font-size-3) * var(--font-scale) );
+  --font-size-5: calc( var(--font-size-4) * var(--font-scale) );
+  --font-size-6: calc( var(--font-size-5) * var(--font-scale) );
+  --color-pink: #ffc0cb;
+  --color-white: #f4f4f4;
+  --color-light-grey: #b1b1b1;
+  --color-dark-grey: #999999;
+  --color-black: #141414;
+  --section-gap: 8rem;
+  --section-gap-inner: calc( var(--section-gap) * 0.75 );
+  --section-gap-inner-small: calc( var(--section-gap) * 0.5);
+  --grid-gap: 3rem;
+  --page-padding: 30px;
+  --page-width: 78rem;
+  --content-width: 50rem;
+  --content-width-small: 40rem;
+  --menu-height: 100px;
+  --grid-container: minmax(var(--page-padding), 1fr) [inner-start] minmax(0, var(--page-width)) [inner-end] minmax(var(--page-padding), 1fr);
+  --grid-content: repeat(12, 1fr);
+}
+
+* {
+  box-sizing: border-box;
+  background-color: var(--color-white);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+}
+
+h1 {
+  font-size: var(--font-size-6);
+}
+
+h2 {
+  font-size: var(--font-size-5);
+}
+
+h3 {
+  font-size: var(--font-size-4);
+}
+
+h4 {
+  font-size: var(--font-size-3);
+}
+
+h5 {
+  font-size: var(--font-size-2);
+}
+
+h6 {
+  font-size: var(--font-size-1);
+}
+
+p, a, li, span {
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  font-size: var(--font-size-1);
+}
+
+a {
+  text-decoration: none;
+}
+
+.todo {
+  display: grid;
+  grid-template-columns: var(--grid-container);
+  margin: 3rem 0 3rem 0;
+}
+.todo__inner {
+  grid-column: inner;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.todo__form {
+  max-width: 800px;
+  width: 100%;
+  border: 1px solid var(--color-light-grey);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.todo__input, .todo__add-button {
+  padding: 1rem;
+  width: 100%;
+  border: 0;
+  border-radius: 0.5rem;
+  font-size: var(--font-size-1);
+}
+.todo__input {
+  background-color: var(--color-pink);
+}
+.todo__input::placeholder {
+  color: var(--color-black);
+}
+.todo__input:focus {
+  outline: none;
+}
+.todo__add-button {
+  margin-top: 0.5rem;
+  background-color: var(--color-light-grey);
+  color: var(--color-black);
+}
+.todo__add-button:hover {
+  background-color: var(--color-dark-grey);
+  color: var(--color-white);
+  cursor: pointer;
+}
+.todo__error-message-container h5 {
+  color: var(--color-black);
+}
+.todo__title {
+  margin: 3rem 0 1rem 0;
+  padding: 0;
+  color: var(--color-black);
+  font-size: var(--font-size-4);
+}
+.todo__list {
+  max-width: 800px;
+  width: 100%;
+}
+.todo__container {
+  margin: 1rem 0 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--color-light-grey);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.todo__container input[type=checkbox] {
+  margin: 0;
+}
+.todo__container input[type=checkbox]:hover {
+  cursor: pointer;
+}
+.todo__container input[type=text] {
+  margin: 0;
+  padding: 1rem 1rem 1rem 0.5rem;
+  border: none;
+  font-size: var(--font-size-1);
+  width: 90%;
+}
+.todo__container input[type=text]:focus {
+  outline: none;
+}
+.todo__container button {
+  border-radius: 0.25rem;
+  background-color: var(--color-light-grey);
+  color: var(--color-black);
+  height: 50px;
+  width: 78px;
+  font-size: var(--font-size-1);
+  border: none;
+}
+.todo__container button:hover {
+  background-color: var(--color-dark-grey);
+  color: var(--color-white);
+  cursor: pointer;
+}
+.todo__container button:last-child {
+  margin-left: 0.5rem;
+}
+.todo__item--completed {
+  color: var(--color-light-grey);
+  text-decoration: line-through;
+}
+.todo__reset-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 2rem 0 0 0;
+}
+.todo__reset-button {
+  border-radius: 0.25rem;
+  background-color: var(--color-light-grey);
+  color: var(--color-black);
+  height: 50px;
+  width: 78px;
+  font-size: var(--font-size-1);
+  border: none;
+}
+.todo__reset-button:hover {
+  background-color: var(--color-dark-grey);
+  color: var(--color-white);
+  cursor: pointer;
+}
+.todo__input-container {
+  flex: 1;
+}
+
+/*# sourceMappingURL=style.css.map */

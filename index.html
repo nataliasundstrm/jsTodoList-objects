@@ -1,0 +1,54 @@
+<!-- 
+    
+TERMINALEN: 
+Klona bassystemet och ta bort versinshanteringen (detta för att ej skriva över befintlig kod i ordinare "fil"): 
+git clone https://github.com/nataliasundstrm/SCSS-base-2.git . && rm -rf .git 
+
+Starta SCSS (SASS):
+sass --watch src/scss/style.scss style.css
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Todo list</title> 
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="container">
+
+        <section class="todo">
+            <div class="todo__inner">
+                
+                <!-- Add todo -->
+                <form action="" class="todo__form">
+                    <input type="text" name="" placeholder="What's the plan?" class="todo__input">
+                    <button type="submit" class="todo__add-button">Add</button>
+                </form>
+
+                <div class="todo__error-msg-container"></div>
+                
+                <!-- Todo list -->
+                <div class="todo__list">
+                    <h4 class="todo__title">Todo list:</h4>
+                </div>
+
+                <!-- Reset button -->
+                <div class="todo__reset-button-container">
+                    <button class="todo__reset-button">Reset</button>
+                </div>
+
+            </div>
+        </section>
+        
+    </div>
+
+    <script src="todo.js"></script>
+
+</body>
+</html>
