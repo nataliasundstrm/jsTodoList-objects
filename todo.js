@@ -7,7 +7,7 @@ const todoApp = () => {
     const errorMsgContainer = document.querySelector('.todo__error-msg-container')
     const resetButton = document.querySelector('.todo__reset-button')
 
-    todoFrom.addEventListener('submit', (event) => {
+    const addTodo = (event) => {
 
         // PREVENT DEFAULT BEHAVIOR
         event.preventDefault()
@@ -29,57 +29,76 @@ const todoApp = () => {
             const checkbox = document.createElement('input')
             checkbox.type = 'checkbox'
 
-            // ADD COMPLETED FUNCTION TO CREATED TASK/TODO ITEM 
-            checkbox.addEventListener('click', (event) => {
-                event.target.nextElementSibling.classList.toggle('todo__item--completed')
-            })
-
             // DELETE BUTTON
             const deleteButton = document.createElement('button')
             deleteButton.innerText = 'Delete'
-
-            // ADD "REMOVE" FUNCTION TO DELETE BUTTON
-            deleteButton.addEventListener('click', (event) => {
-                event.target.parentNode.parentNode.remove()
-            })
             
             // EDIT BUTTON
             const editButton = document.createElement('button')
             editButton.classList.add('edit')
             editButton.innerText = 'Edit'
 
-            // ADD EDIT FUNCTION TO EDIT BUTTON + ERROR HANDELING WHEN INPUT FIELD IS EMPTY
-            editButton.addEventListener('click', () => {
+            const buttons = function() {
 
-                if (editButton.innerText.toLowerCase() == 'edit') {
-                    editButton.innerText = 'Save'
-                    todoItem.removeAttribute('readOnly')
-                    todoItem.focus()
-                    todoItem.style.cursor = 'text'
-                    
-                } else {
-                    if (todoItem.value === '') {
+                // ADD COMPLETED FUNCTION TO CREATED TASK/TODO ITEM 
+                this.complete = function(event) {
+                    event.target.nextElementSibling.classList.toggle('todo__item--completed') 
+                }
+
+                // ADD "REMOVE" FUNCTION TO DELETE BUTTON
+                this.delete = function(event) {
+                    event.target.parentNode.parentNode.remove()
+                }
+            
+                // ADD EDIT FUNCTION TO EDIT BUTTON + ERROR HANDELING WHEN INPUT FIELD IS EMPTY
+                this.edit = function() {
+                    if (editButton.innerText.toLowerCase() == 'edit') {
+                        editButton.innerText = 'Save'
+                        todoItem.removeAttribute('readOnly')
                         todoItem.focus()
                         todoItem.style.cursor = 'text'
-                        const errorMsgText = document.createElement('h5')
-                        errorMsgText.innerText = 'Cannot save empty todo, input field must be filled out.'
-                        errorMsgContainer.appendChild(errorMsgText)
-                        
-                        editButton.addEventListener('click', () => {
-                            errorMsgText.remove()
-                        })
-
-                        editButton.addEventListener('click', () => {
-                            errorMsgText.remove()
-                        })
                         
                     } else {
-                        editButton.innerText = 'Edit'
-                        todoItem.setAttribute('readOnly', 'readOnly')
-                        todoItem.style.cursor = 'default'
+
+                        if (todoItem.value === '') {
+                            todoItem.focus()
+                            todoItem.style.cursor = 'text'
+                            const errorMsgText = document.createElement('h5')
+                            errorMsgText.innerText = 'Cannot save empty todo, input field must be filled out.'
+                            errorMsgContainer.appendChild(errorMsgText)
+                            
+                            editButton.addEventListener('click', () => {
+                                errorMsgText.remove()
+                            })
+    
+                            editButton.addEventListener('click', () => {
+                                errorMsgText.remove()
+                            })
+                            
+                        } else {
+                            editButton.innerText = 'Edit'
+                            todoItem.setAttribute('readOnly', 'readOnly')
+                            todoItem.style.cursor = 'default'
+                        }
                     }
+
                 }
-            })
+
+                // ADD RESET FUNCTION TO RESET BUTTON
+                this.resetButton = function() {
+                    todoContainer.remove()
+                }
+                
+                // ADD EVENT HANDLER(S)
+                checkbox.addEventListener('click', this.complete)
+                deleteButton.addEventListener('click', this.delete)
+                editButton.addEventListener('click', this.edit)
+                resetButton.addEventListener('click', this.resetButton)
+                
+            }
+
+            // RUN BUTTONS
+            const runButtons = new buttons()
 
             // CREATE CONTAINER FOR BUTTONS
             const buttonsContainer = document.createElement('div')
@@ -110,10 +129,6 @@ const todoApp = () => {
             // ADD TODO CONTAINER TO THE LIST
             todoList.appendChild(todoContainer)
 
-            resetButton.addEventListener('click', () => {
-                todoContainer.remove()
-            })
-
         } else {
             // ADD ERROR HANDELING WHEN INPUT FIELD IS EMPTY
             const errorMsgText = document.createElement('h5')
@@ -128,8 +143,11 @@ const todoApp = () => {
         // CLEAR INPUT VALUE 
         todoInput.value = null
 
-    })
+    }
+
+    // ADD EVENT HANDLER 
+    todoFrom.addEventListener('submit', addTodo)
 }
 
-// Run todo app
+// RUN TODO APP
 todoApp()
